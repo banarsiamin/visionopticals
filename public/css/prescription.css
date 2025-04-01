@@ -1,0 +1,187 @@
+/* Prescription Form Styles */
+.container-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.top_section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.img {
+    max-width: 150px;
+    margin-bottom: 15px;
+}
+
+.vision-opticals {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.gray_line {
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.gray_line p {
+    margin: 0;
+    color: #666;
+}
+
+.second_section {
+    margin-bottom: 30px;
+}
+
+.no_and_date, .name_and_mob {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.left, .right {
+    flex: 1;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.prescription select {
+    width: auto;
+}
+
+.table {
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #f8f9fa;
+}
+
+.tbody_input input {
+    width: 100%;
+}
+
+.input_amount {
+    text-align: right;
+}
+
+.fourth_box {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.left-30 {
+    flex: 7;
+}
+
+.right-20 {
+    flex: 3;
+    padding-left: 20px;
+}
+
+.table_four table {
+    margin-bottom: 0;
+}
+
+.inpt_rele {
+    width: 60px !important;
+}
+
+.submit {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.submit:hover {
+    background: #0056b3;
+}
+
+.print {
+    background: #28a745;
+}
+
+.print:hover {
+    background: #218838;
+}
+
+.whatsapp {
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.whatsapp:hover {
+    background: #128C7E;
+}
+
+/* Mobiscroll overrides */
+.mbsc-ios.mbsc-textfield {
+    padding: 0;
+}
+
+.mbsc-textfield-wrapper {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-main {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .no_and_date, .name_and_mob {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        margin-bottom: 10px;
+    }
+
+    .fourth_box {
+        flex-direction: column;
+    }
+
+    .right-20 {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+} 

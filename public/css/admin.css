@@ -1,0 +1,54 @@
+/* Admin Panel Styles */
+
+/* Disabled Fields in View Mode */
+.view-mode input[disabled],
+.view-mode select[disabled],
+.view-mode textarea[disabled] {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    color: #4a5568;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Make disabled fields more readable */
+.view-mode input[disabled],
+.view-mode select[disabled],
+.view-mode textarea[disabled] {
+    font-weight: 500;
+}
+
+/* Hide elements with no-print class when printing */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* Improved print styling */
+    .prescription-details {
+        border: none;
+        box-shadow: none;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+    
+    input, select, textarea {
+        border: none !important;
+        background: transparent !important;
+    }
+} 
