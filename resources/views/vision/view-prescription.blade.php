@@ -118,7 +118,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="font-weight: 600;">RE</td>
+                                <td style="font-weight: 600;">RE1</td>
                                 <td>
                                     <input type="text" disabled value="{{ $prescription->re_sph }}" style="border: 1px solid #ddd; background: white; padding: 4px 8px; width: 100%;">
                                 </td>

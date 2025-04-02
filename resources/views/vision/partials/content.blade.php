@@ -221,7 +221,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="font-weight: 600;">RE</td>
+                        <td style="font-weight: 600;">RE1</td>
                         <td>
                                         @if(isset($viewMode) && $viewMode)
                                             <input type="text" class="readonly-input" value="{{ $prescription->re_sph }}" readonly>
@@ -266,7 +266,9 @@
                                         <option value="-0.75" {{ isset($prescription) && $prescription->re_sph == '-0.75' ? 'selected' : '' }}>-0.75</option>
                                         <option value="-0.50" {{ isset($prescription) && $prescription->re_sph == '-0.50' ? 'selected' : '' }}>-0.50</option>
                                         <option value="-0.25" {{ isset($prescription) && $prescription->re_sph == '-0.25' ? 'selected' : '' }}>-0.25</option>
-                                        <option value="0" {{ isset($prescription) && $prescription->re_sph == '0' ? 'selected' : '' }}>0</option>
+                                        <!-- <option value="0" {{ isset($prescription) && $prescription->re_sph == '0' ? 'selected' : '' }}>0</option> -->
+                                        <option value="0" {{ !isset($prescription) || $prescription->re_sph == '0' || $prescription->re_sph == null ? 'selected' : '' }}>0</option>                                                    
+
                                         <option value="+0.25" {{ isset($prescription) && $prescription->re_sph == '+0.25' ? 'selected' : '' }}>+0.25</option>
                                         <option value="+0.50" {{ isset($prescription) && $prescription->re_sph == '+0.50' ? 'selected' : '' }}  >+0.50</option>
                                         <option value="+0.75" {{ isset($prescription) && $prescription->re_sph == '+0.75' ? 'selected' : '' }}>+0.75</option>

@@ -25,7 +25,8 @@
                 <strong>Invoice #:</strong> {{ $prescription->invoice_no }}
             </div>
             <div class="header-item">
-                <strong>Date:</strong> {{ $prescription->date->format('d/m/Y') }}
+                <strong>Date:</strong> {{ \Carbon\Carbon::parse($prescription->date)->format('d/m/Y') }}
+
             </div>
             <div class="header-item">
                 <strong>Customer:</strong> {{ $prescription->customer_name }}
