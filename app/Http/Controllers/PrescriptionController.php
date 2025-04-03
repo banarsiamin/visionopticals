@@ -58,6 +58,10 @@ class PrescriptionController extends Controller
         
         $request->merge($formData);
         
+        // echo "<PRE>";print_r($request);die;
+
+        // echo "<PRE>";print_r($validated);
+        // echo "<PRE>";print_r($_REQUEST);die;
         $validated = $request->validate([
             'invoice_no' => 'required|string|unique:prescriptions',
             'date' => 'required|date',
@@ -108,6 +112,26 @@ class PrescriptionController extends Controller
             ->with('success', 'Prescription #' . $prescription->invoice_no . ' created successfully! 🎉');
     }
 
+    public function edit(Prescription $prescription)
+    {
+        // return view('vision.index', [
+        //     'prescription' => $prescription,
+        //     'editMode' => true,
+        //     'invoiceNo' => $prescription->invoice_no
+        // ]);
+        // Generate a new invoice number for any new prescriptions
+        $lastInvoice = Prescription::orderBy('id', 'desc')->first();
+        $sequence = $lastInvoice ? intval($lastInvoice->id) + 1 : 1;
+        $invoiceNo = str_pad($sequence, 4, '0', STR_PAD_LEFT);
+        
+        // Return the index view but with the prescription data for viewing
+        return view('vision.partials.content', [
+            'invoiceNo' => $invoiceNo,
+            'viewMode' => false,
+            'prescription' => $prescription,
+            'pp' => '1'
+        ]);
+    }
     public function print(Prescription $prescription)
     {
         // Generate a new invoice number for any new prescriptions
@@ -145,14 +169,6 @@ class PrescriptionController extends Controller
         return redirect()->away($whatsappUrl);
     }
 
-    public function edit(Prescription $prescription)
-    {
-        return view('vision.index', [
-            'prescription' => $prescription,
-            'editMode' => true,
-            'invoiceNo' => $prescription->invoice_no
-        ]);
-    }
 
     public function update(Request $request, Prescription $prescription)
     {
@@ -227,7 +243,9 @@ class PrescriptionController extends Controller
         } else {
             $validated['payment_status'] = 'pending';
         }
-
+        
+        // echo "<PRE>";print_r($validated);
+        // echo "<PRE>";print_r($_REQUEST);die;
         $prescription->update($validated);
 
         if ($request->has('send_whatsapp')) {

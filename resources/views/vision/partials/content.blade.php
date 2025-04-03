@@ -169,14 +169,14 @@
                     </td>
                     <td class="tbody_input">
                                     @if(isset($viewMode) && $viewMode)
-                                        <input type="text" class="readonly-input" value="{{ $prescription->photo_description }}" readonly>
+                                        <input type="text" class="readonly-input" value="{{ $prescription->photo_description }}" readonly1>
                                     @else
                                         <input type="text" placeholder="Write description" name="photo_description" value="{{ isset($prescription) ? $prescription->photo_description : '' }}">
                                     @endif
                     </td>
                     <td>
                                     @if(isset($viewMode) && $viewMode)
-                                        <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->photo_amount ?? 0, 2) }}" readonly>
+                                        <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->photo_amount ?? 0, 2) }}" readonly1>
                                     @else
                                         <input type="text" placeholder="₹ 0 .00" name="photo_amount" class="input_amount" value="{{ isset($prescription) ? $prescription->photo_amount : '' }}">
                                     @endif
@@ -188,14 +188,14 @@
                     </td>
                     <td class="tbody_input">
                                     @if(isset($viewMode) && $viewMode)
-                                        <input type="text" class="readonly-input" value="{{ $prescription->other_description }}" readonly>
+                                        <input type="text" class="readonly-input" value="{{ $prescription->other_description }}" readonly1>
                                     @else
                                         <input type="text" placeholder="Write description" name="other_description" value="{{ isset($prescription) ? $prescription->other_description : '' }}">
                                     @endif
                     </td>
                     <td>
                                     @if(isset($viewMode) && $viewMode)
-                                        <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->other ?? 0, 2) }}" readonly>
+                                        <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->other ?? 0, 2) }}" readonly1>
                                     @else
                                         <input type="text" placeholder="₹ 0 .00" name="other" class="input_amount" value="{{ isset($prescription) ? $prescription->other : '' }}">
                                     @endif
@@ -221,7 +221,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="font-weight: 600;">RE1</td>
+                        <td style="font-weight: 600;">RE</td>
                         <td>
                                         @if(isset($viewMode) && $viewMode)
                                             <input type="text" class="readonly-input" value="{{ $prescription->re_sph }}" readonly>
@@ -544,17 +544,19 @@
                                                         <input mbsc-input class="mobiscroll-input" name="le_vision" placeholder="0" data-dropdown="true" data-input-style="outline" data-label-style="stacked" value="{{ isset($prescription) ? $prescription->le_vision : '' }}" />
                                                 </label>
                                                 <select class="mobiscroll-select">
-                                                    <option value="2" {{ isset($prescription) && $prescription->le_vision == '2' ? 'selected' : '' }}>2</option>
-                                                    <option value="3" {{ isset($prescription) && $prescription->le_vision == '3' ? 'selected' : '' }}>3</option>
-                                                    <option value="4" {{ isset($prescription) && $prescription->le_vision == '4' ? 'selected' : '' }}>4</option>
+                                                            <option value="2" {{ isset($prescription) && $prescription->le_vision == '6/6' ? 'selected' : '' }}>6/6</option>
+                                                            <option value="3" {{ isset($prescription) && $prescription->le_vision == '6/9' ? 'selected' : '' }}>6/9</option>
+                                                            <option value="4" {{ isset($prescription) && $prescription->le_vision == '6/12' ? 'selected' : '' }}>6/12</option>
+
                                                 </select>
                                             </div>
                                         </div>
                                         @endif
                                     </td>
                                 </tr>
+                                
                                 <tr>
-                                    <td style="font-weight: 600;">ADD</td>
+                                    <td style="font-weight: 600;">ADD L</td>
                                     <td>
                                         @if(isset($viewMode) && $viewMode)
                                             <input type="text" class="readonly-input" value="{{ $prescription->add_l }}" readonly>
@@ -584,6 +586,7 @@
                                         </div>
                                         @endif
                                     </td>
+                                    <td style="text-align: center;font-weight: 600;">ADD R</td>
                                     <td>
                                         @if(isset($viewMode) && $viewMode)
                                             <input type="text" class="readonly-input" value="{{ $prescription->add_r }}" readonly>
@@ -623,27 +626,27 @@
                 	<div style="text-align:right;">
                         <span>Total :</span>
                         @if(isset($viewMode) && $viewMode)
-                            <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->total ?? 0, 2) }}" readonly>
+                            <input id="ayt_total" type="text" class="readonly-input" value="₹ {{ number_format($prescription->total ?? 0, 2) }}" readonly1 oninput="calculateBalance()">
                         @else
-                            <input type="text" name="total" style="" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->total : '' }}" required>
+                            <input id="ayt_total" type="text" name="total" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->total : '' }}" required oninput="calculateBalance()">
                         @endif
                     </div>
 
                     <div style="text-align:right; margin-top: 10px;">
                         <span>Advance :</span>
                         @if(isset($viewMode) && $viewMode)
-                            <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->advance ?? 0, 2) }}" readonly>
+                            <input id="ayt_advance" type="text" class="readonly-input" value="₹ {{ number_format($prescription->advance ?? 0, 2) }}" readonly1 oninput="calculateBalance()">
                         @else
-                            <input type="text" name="advance" style="" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->advance : '' }}">
+                            <input id="ayt_advance" type="text" name="advance" style="" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->advance : '' }}" oninput="calculateBalance()">
                         @endif
                     </div>
 
                     <div style="text-align:right; margin-top: 10px;">
                         <span>Balance :</span>
                         @if(isset($viewMode) && $viewMode)
-                            <input type="text" class="readonly-input" value="₹ {{ number_format($prescription->balance ?? 0, 2) }}" readonly>
+                            <input id="ayt_balance" type="text" class="readonly-input" value="₹ {{ number_format($prescription->balance ?? 0, 2) }}" readonly1>
                         @else
-                            <input type="text" name="balance" style="" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->balance : '' }}">
+                            <input id="ayt_balance" type="text" name="balance" style="" placeholder="₹ 0 .00" value="{{ isset($prescription) ? $prescription->balance : '' }}">
                         @endif
                     </div>
                 </div>
@@ -659,6 +662,7 @@
                         <img src="{{ asset('visionui/img/whatsapp.svg') }}" style="height:22px;"> <span>Send</span>
                     </button>
                 @endif
+
             </div>
 
             <div class="top_section text-center">
@@ -675,6 +679,13 @@
 
         </div>
     </div>
+    <!-- <input type="hidden" name="frame_amount_actual" value="">
+    <input type="hidden" name="glass_amount_actual" value="">
+    <input type="hidden" name="photo_amount_actual" value="">
+    <input type="hidden" name="other_actual" value="23300">
+    <input type="hidden" name="total_actual" value="5400023300">
+    <input type="hidden" name="advance_actual" value="0">
+    <input type="hidden" name="balance_actual" value="5400023300"> -->
 </form>
 
 @if(!isset($viewMode) || !$viewMode)
@@ -690,9 +701,9 @@
           
           mobiscroll.select(select, {
              inputElement: input,
-             touchUi: true,
-                display: 'anchored'
-       });
+             touchUi: true,                
+             display: 'anchored'
+            });
           
           input.addEventListener('click', function () {
                 mobiscroll.getInst(select).open();
@@ -700,185 +711,24 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('prescriptionForm');
-            const amountInputs = document.querySelectorAll('.input_amount');
-            const totalInput = document.querySelector('input[name="total"]');
-            const advanceInput = document.querySelector('input[name="advance"]');
-            const balanceInput = document.querySelector('input[name="balance"]');
-
-            // Format number to Indian currency format
-            function formatIndianCurrency(number) {
-                return '₹ ' + (number / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            }
-
-            // Parse currency string to number (in paise)
-            function parseCurrency(value) {
-                if (!value) return 0;
-                // Remove currency symbol, commas and convert to float
-                const numericValue = parseFloat(value.replace(/[^\d.-]/g, '')) || 0;
-                // Convert to paise (multiply by 100)
-                return Math.round(numericValue * 100);
-            }
-
-            function calculateTotal() {
-                let total = 0;
-                amountInputs.forEach(input => {
-                    const value = parseCurrency(input.value);
-                    if (value > 0) {
-                        total += value;
-                    }
-                });
-                totalInput.value = formatIndianCurrency(total);
-                
-                // Update hidden input for total
-                let hiddenTotal = form.querySelector('input[name="total_actual"]');
-                if (!hiddenTotal) {
-                    hiddenTotal = createHiddenInput('total', total);
-                    form.appendChild(hiddenTotal);
-                }
-                hiddenTotal.value = total;
-                
-                calculateBalance();
-            }
-
-            function calculateBalance() {
-                const total = parseCurrency(totalInput.value);
-                const advance = parseCurrency(advanceInput.value);
-                const balance = Math.max(0, total - advance);
-                balanceInput.value = formatIndianCurrency(balance);
-                
-                // Update hidden inputs for advance and balance
-                let hiddenAdvance = form.querySelector('input[name="advance_actual"]');
-                let hiddenBalance = form.querySelector('input[name="balance_actual"]');
-                
-                if (!hiddenAdvance) {
-                    hiddenAdvance = createHiddenInput('advance', advance);
-                    form.appendChild(hiddenAdvance);
-                }
-                if (!hiddenBalance) {
-                    hiddenBalance = createHiddenInput('balance', balance);
-                    form.appendChild(hiddenBalance);
-                }
-                
-                hiddenAdvance.value = advance;
-                hiddenBalance.value = balance;
-            }
-
-            // Create hidden input for actual values
-            function createHiddenInput(name, value) {
-                let input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = name + '_actual';
-                input.value = value;
-                return input;
-            }
-
-            // Handle input for amount fields
-            amountInputs.forEach(input => {
-                // Create hidden input for each amount field
-                const hiddenInput = createHiddenInput(input.name, '');
-                form.appendChild(hiddenInput);
-
-                input.addEventListener('input', function(e) {
-                    let value = this.value.replace(/[^\d.]/g, '');
-                    
-                    // Handle decimal points
-                    const parts = value.split('.');
-                    if (parts.length > 2) {
-                        value = parts[0] + '.' + parts.slice(1).join('');
-                    }
-                    
-                    if (parts.length === 2 && parts[1].length > 2) {
-                        value = parts[0] + '.' + parts[1].substring(0, 2);
-                    }
-                    
-                    this.value = value;
-                    calculateTotal();
-                });
-
-                input.addEventListener('blur', function() {
-                    const value = parseCurrency(this.value);
-                    if (value > 0) {
-                        this.value = formatIndianCurrency(value);
-                        // Update hidden input
-                        const hiddenInput = form.querySelector(`input[name="${this.name}_actual"]`);
-                        if (hiddenInput) {
-                            hiddenInput.value = value;
-                        }
-                    } else {
-                        this.value = '';
-                        const hiddenInput = form.querySelector(`input[name="${this.name}_actual"]`);
-                        if (hiddenInput) {
-                            hiddenInput.value = '0';
-                        }
-                    }
-                    calculateTotal();
-                });
-            });
-
-            // Handle input for advance field
-            advanceInput.addEventListener('input', function(e) {
-                let value = this.value.replace(/[^\d.]/g, '');
-                
-                const parts = value.split('.');
-                if (parts.length > 2) {
-                    value = parts[0] + '.' + parts.slice(1).join('');
-                }
-                
-                if (parts.length === 2 && parts[1].length > 2) {
-                    value = parts[0] + '.' + parts[1].substring(0, 2);
-                }
-                
-                this.value = value;
-                calculateBalance();
-            });
-
-            advanceInput.addEventListener('blur', function() {
-                const value = parseCurrency(this.value);
-                if (value > 0) {
-                    this.value = formatIndianCurrency(value);
-                } else {
-                    this.value = '';
-                }
-                calculateBalance();
-            });
-
-            // Make total and balance read-only
-            totalInput.readOnly = true;
-            balanceInput.readOnly = true;
-
-            // Initialize calculations and format any pre-filled values
-            amountInputs.forEach(input => {
-                if (input.value) {
-                    const value = parseCurrency(input.value);
-                    input.value = formatIndianCurrency(value);
-                    const hiddenInput = form.querySelector(`input[name="${input.name}_actual"]`);
-                    if (hiddenInput) {
-                        hiddenInput.value = value;
-                    }
-                }
-            });
-
-            if (advanceInput.value) {
-                const value = parseCurrency(advanceInput.value);
-                advanceInput.value = formatIndianCurrency(value);
-            }
-
-            calculateTotal();
-
-            // Update form submission to use hidden inputs
-            form.addEventListener('submit', function(e) {
-                const hiddenInputs = form.querySelectorAll('input[name$="_actual"]');
-                hiddenInputs.forEach(hidden => {
-                    const originalName = hidden.name.replace('_actual', '');
-                    const originalInput = form.querySelector(`input[name="${originalName}"]`);
-                    if (originalInput) {
-                        originalInput.value = hidden.value;
-                    }
-                });
-            });
-        });
+            // const form = document.getElementById('prescriptionForm');
+            // const amountInputs = document.querySelectorAll('.input_amount');
+            // const totalInput = document.querySelector('input[name="total"]');
+            // const advanceInput = document.querySelector('input[name="advance"]');
+            // const balanceInput = document.querySelector('input[name="balance"]');
+         });
     </script>
+    <script>
+function calculateBalance() {
+    const total = parseFloat(document.getElementById('ayt_total').value) || 0;
+    const advance = parseFloat(document.getElementById('ayt_advance').value) || 0;
+    const balance = total - advance;
+    document.getElementById('ayt_balance').value = balance.toFixed(0);
+}
+
+// Calculate initial balance on page load
+calculateBalance();
+</script>
 @endif
 
 </body>

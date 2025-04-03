@@ -6,7 +6,7 @@
     <title>Vision Opticals - @yield('title', 'Prescription')</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+    <!-- <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}"> -->
     
     <!-- Mobiscroll CSS -->
     <link rel="stylesheet" href="https://cdn.mobiscroll.com/4.10.9/css/mobiscroll.min.css">

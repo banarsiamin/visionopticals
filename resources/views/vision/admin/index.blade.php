@@ -12,7 +12,7 @@
             </form>
         </div>
     </div>
-
+<style>.search-box input{width: 80% !important;}</style>
     <div class="admin-filters">
         <form action="{{ route('admin.prescriptions.index') }}" method="GET" class="filter-form">
             <div class="filter-row">
@@ -76,9 +76,9 @@
                     <td>{{ \Carbon\Carbon::parse($prescription->date)->format('d/m/Y') }}</td>
                     <td>{{ $prescription->customer_name }}</td>
                     <td>{{ $prescription->mobile_number }}</td>
-                    <td class="amount">₹ {{ number_format($prescription->total / 100, 2) }}</td>
-                    <td class="amount">₹ {{ number_format($prescription->advance / 100, 2) }}</td>
-                    <td class="amount">₹ {{ number_format($prescription->balance / 100, 2) }}</td>
+                    <td class="amount">{{ $prescription->total }}</td>
+                    <td class="amount">{{ $prescription->advance }}</td>
+                    <td class="amount">{{ $prescription->balance }}</td>
                     <td>
                         <span class="status-badge status-{{ $prescription->payment_status }}">
                             {{ ucfirst($prescription->payment_status) }}

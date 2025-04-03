@@ -59,10 +59,16 @@ class PrescriptionController extends Controller
 
     public function edit(Prescription $prescription)
     {
-        return view('vision.admin.edit', [
+        // return view('vision.admin.edit', [
+        //     'prescription' => $prescription,
+        //     'editMode' => true
+        // ]);
+        return redirect()->route('prescription.print', [
             'prescription' => $prescription,
             'editMode' => true
-        ]);
+        ])
+        ->with('success', 'Prescription #' . $prescription->invoice_no . ' created successfully! 🎉');
+
     }
 
     public function update(Request $request, Prescription $prescription)
