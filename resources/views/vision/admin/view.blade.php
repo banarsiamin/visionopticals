@@ -134,8 +134,9 @@
                             <td>{{ $prescription->le_vision ?: '-' }}</td>
                         </tr>
                         <tr>
-                            <td><strong>ADD</strong></td>
-                            <td colspan="2">{{ $prescription->add_r ?: '-' }}</td>
+                            <td><strong>ADD L</strong></td>
+                            <td>{{ $prescription->add_r ?: '-' }}</td>
+                            <td><strong>ADD R</strong></td>
                             <td colspan="2">{{ $prescription->add_l ?: '-' }}</td>
                         </tr>
                     </tbody>
